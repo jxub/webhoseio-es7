@@ -2,15 +2,17 @@
 
 const webhoseio = require('../webhoseio');
 
-const client = webhoseio.config({token: '61b50ab2-2f53-43f8-8b89-59ad8a5e83bd'});
+const client = webhoseio.config({token: '61b50ab2-2f53-43f8-8b89-59ad8a5e65gb'});
 
-client.query('filterWebData', {q: 'github'} )
-  .then(output => {
-    console.log(output['posts'][0]['text']);
-    console.log(output['posts'][0]['published']);
-  });
-
-client.getNext()
-  .then(output => {
-    console.log(output['posts'][0]['thread']['site']);
-  });
+async function queryApi(queryThing = 'russia election') {
+  let output
+  try {
+    output = await client.query('filterWebData', {q: queryThing})
+    console.log(output['posts'][0]['text'])
+    // fetch the next page of the API
+    output = await client.getNext()
+    console.log(output['posts'][0]['thread']['site']);    
+  } catch (e) {
+    console.log('error getting data')
+  }
+}
