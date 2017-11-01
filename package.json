@@ -10,7 +10,7 @@
     "url": "http://github.com/Webhose/webhosio-nodejs.git"
   },
   "dependencies": {
-    "es6-promise": "^4.0.5",
-    "isomorphic-fetch": "^2.2.1"
+    "axios": "^0.17.0",
+    "es6-promise": "^4.0.5"
   }
 }
